@@ -30,3 +30,26 @@ jobs:
       with:
         name: App
         path: ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk
+    - name: Send mail
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        # mail server settings
+        server_address: smtp-mail.outlook.com
+        server_port: 587
+        # user credentials
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        # email subject
+        subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+        # email body as text
+        html_body: <h1> Build ${{ job.status }} </h1></br>
+                   <table>
+                   <tr><td> build commit message </td><td>${{ github.event.head_commit.message }}</td></tr>
+                   <tr><td> build commit </td><td>https://github.com/${{ github.repository }}/commit/${{ github.sha }}</td></tr>
+                   <tr><td> build url </td><td>https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}</td></tr>
+                   </table>
+        # comma-separated string, send email to
+        to: ferrywu@arimacomm.com.tw,williamhu@arimacomm.com.tw
+        # from email name
+        from: github-ferrywu
