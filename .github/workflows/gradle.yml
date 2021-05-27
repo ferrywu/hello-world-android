@@ -71,6 +71,7 @@ jobs:
                    <tr><td> build commit message </td><td>${{ github.event.head_commit.message }}</td></tr>
                    <tr><td> build commit </td><td>https://github.com/${{ github.repository }}/commit/${{ github.sha }}</td></tr>
                    <tr><td> build url </td><td>https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}</td></tr>
+                   <tr><td> release url </td><td>${{ steps.create_release.outputs.html_url }}</td></tr>
                    </table>
         # comma-separated string, send email to
         to: ferrywu@arimacomm.com.tw,williamhu@arimacomm.com.tw
