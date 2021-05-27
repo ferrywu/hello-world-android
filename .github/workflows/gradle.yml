@@ -77,3 +77,5 @@ jobs:
         to: ferrywu@arimacomm.com.tw,williamhu@arimacomm.com.tw
         # from email name
         from: github-ferrywu
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
